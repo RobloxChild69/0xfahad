@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>النشاط الشمسي - أسرار شمسنا</title>
+    <title>النشاط الشمسي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -13,15 +13,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-        :root {
-            --primary: #FF6B35;
-            --secondary: #004E89;
-            --dark: #0A2342;
-            --light: #F7F7F7;
-            --accent: #00A6FB;
-            --sun-yellow: #FFBE0B;
-        }
-        
         body {
             background-color: #0A2342;
             color: #F7F7F7;
@@ -29,771 +20,363 @@
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 0 20px;
         }
         
-        /* الهيدر */
         header {
-            background: linear-gradient(to right, #0A2342, #004E89);
-            padding: 1rem 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: #0A2342;
+            padding: 1.5rem 0;
+            text-align: center;
         }
         
         .logo {
-            display: flex;
+            display: inline-flex;
             align-items: center;
+            gap: 10px;
         }
         
         .logo i {
-            color: var(--primary);
-            font-size: 2.5rem;
-            margin-left: 10px;
+            color: #FF6B35;
+            font-size: 2rem;
         }
         
         .logo h1 {
-            font-size: 1.8rem;
-            background: linear-gradient(to right, #FF6B35, #FFBE0B);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-right: 1.5rem;
-        }
-        
-        nav ul li a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 600;
-            padding: 0.5rem 0;
-            transition: color 0.3s;
-            border-bottom: 2px solid transparent;
-        }
-        
-        nav ul li a:hover {
-            color: var(--primary);
-            border-bottom: 2px solid var(--primary);
-        }
-        
-        /* القسم الرئيسي */
-        .hero {
-            background: linear-gradient(rgba(10, 35, 66, 0.85), rgba(10, 35, 66, 0.9)), url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80');
-            background-size: cover;
-            background-position: center;
-            padding: 6rem 0;
-            text-align: center;
-        }
-        
-        .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
             color: #FFBE0B;
         }
         
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-        }
-        
-        .highlight {
-            color: var(--sun-yellow);
-            font-weight: bold;
-        }
-        
-        /* الأقسام */
         section {
-            padding: 5rem 0;
+            padding: 2.5rem 0;
         }
         
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
+        h2 {
+            font-size: 1.8rem;
             color: #FFBE0B;
-            display: inline-block;
-            padding-bottom: 10px;
-            border-bottom: 3px solid var(--primary);
+            margin-bottom: 1.2rem;
+            text-align: center;
         }
         
-        .section-title p {
-            max-width: 700px;
-            margin: 1rem auto 0;
-            font-size: 1.2rem;
-            color: #ddd;
+        p {
+            font-size: 1.05rem;
+            margin-bottom: 1.2rem;
+            text-align: center;
         }
         
-        /* البطاقات */
+        .intro {
+            background: linear-gradient(rgba(10, 35, 66, 0.9), rgba(10, 35, 66, 0.9));
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.5rem;
         }
         
         .card {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-        }
-        
         .card-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: #FF6B35;
+            margin-bottom: 1rem;
         }
         
         .card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
             color: #FFBE0B;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
         }
         
-        /* قسم التأثيرات */
         .effects {
-            background-color: rgba(0, 78, 137, 0.2);
+            background-color: rgba(0, 78, 137, 0.15);
         }
         
         .effect-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 2.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 1.5rem;
-        }
-        
-        .effect-icon {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-left: 1.5rem;
-            min-width: 60px;
-            text-align: center;
-        }
-        
-        /* قسم آلية النشاط الشمسي */
-        .mechanism {
-            background-color: rgba(0, 78, 137, 0.1);
-        }
-        
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 3rem auto;
-        }
-        
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background-color: var(--primary);
-            top: 0;
-            bottom: 0;
-            right: 50%;
-            margin-right: -3px;
-            border-radius: 3px;
-        }
-        
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            width: 50%;
-            box-sizing: border-box;
-            margin-bottom: 2rem;
-        }
-        
-        .timeline-item:nth-child(odd) {
-            right: 0;
-        }
-        
-        .timeline-item:nth-child(even) {
-            right: 50%;
-        }
-        
-        .timeline-content {
-            padding: 20px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border-right: 5px solid var(--accent);
-        }
-        
-        .timeline-content h4 {
-            color: var(--sun-yellow);
-            margin-bottom: 0.5rem;
-        }
-        
-        .timeline-item:nth-child(odd) .timeline-content {
-            border-right-color: var(--primary);
-        }
-        
-        /* قسم دورة الشمس */
-        .cycle-section {
-            background-color: rgba(0, 78, 137, 0.2);
-        }
-        
-        .cycle-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 3rem;
-        }
-        
-        .cycle-image {
-            flex: 1;
-            min-width: 300px;
-            max-width: 500px;
-            text-align: center;
-        }
-        
-        .cycle-image img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-        
-        .cycle-content {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .cycle-phase {
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-        }
-        
-        .cycle-phase h4 {
-            color: var(--sun-yellow);
-            margin-bottom: 0.5rem;
-        }
-        
-        /* قسم مراقبة الشمس */
-        .observation-section {
-            background-color: rgba(0, 78, 137, 0.1);
-        }
-        
-        .obs-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        
-        .obs-card {
-            background: linear-gradient(145deg, rgba(0, 166, 251, 0.1), rgba(255, 107, 53, 0.1));
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
-        
-        .obs-card h3 {
-            color: #FFBE0B;
+            padding: 1.2rem;
             margin-bottom: 1rem;
         }
         
-        /* قسم حقائق مذهلة */
-        .facts-section {
-            background-color: rgba(0, 78, 137, 0.2);
+        .effect-item h3 {
+            color: #FFBE0B;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
         }
         
         .facts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
         
         .fact-box {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 2rem;
+            border-radius: 10px;
+            padding: 1.2rem;
             text-align: center;
-            border-top: 5px solid var(--primary);
         }
         
         .fact-box i {
-            font-size: 2.5rem;
-            color: var(--sun-yellow);
+            font-size: 1.8rem;
+            color: #FFBE0B;
+            margin-bottom: 0.8rem;
+        }
+        
+        .fact-box h3 {
+            color: #FFBE0B;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cycle-info {
+            background-color: rgba(0, 78, 137, 0.1);
+            padding: 2rem 0;
+        }
+        
+        .cycle-stages {
+            margin-top: 1.5rem;
+        }
+        
+        .stage {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1rem;
             margin-bottom: 1rem;
         }
         
-        .fact-box h4 {
-            margin-bottom: 1rem;
-            color: var(--sun-yellow);
+        .stage h3 {
+            color: #FFBE0B;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            text-align: right;
         }
         
-        /* الفوتر */
         footer {
-            background: linear-gradient(to right, #004E89, #0A2342);
-            padding: 3rem 0;
+            background: #004E89;
+            padding: 2rem 0;
             text-align: center;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
         
         .social-icons {
             display: flex;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
         }
         
         .social-icons a {
             color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-        
-        .social-icons a:hover {
-            color: var(--primary);
+            font-size: 1.2rem;
         }
         
         .copyright {
-            margin-top: 1.5rem;
-            color: #aaa;
+            color: #ccc;
             font-size: 0.9rem;
+            margin-top: 1rem;
         }
         
-        /* التكيف مع الشاشات الصغيرة */
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
+            .container {
+                padding: 0 15px;
             }
             
-            nav ul {
-                margin-top: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
+            section {
+                padding: 2rem 0;
             }
             
-            nav ul li {
-                margin-right: 1rem;
-                margin-bottom: 0.5rem;
+            h2 {
+                font-size: 1.6rem;
             }
             
-            .hero h2 {
-                font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .effect-item {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .effect-icon {
-                margin-left: 0;
-                margin-bottom: 1rem;
-            }
-            
-            .timeline::after {
-                right: 31px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                padding-right: 70px;
-                padding-left: 25px;
-            }
-            
-            .timeline-item:nth-child(even) {
-                right: 0;
+            .cards, .facts-grid {
+                grid-template-columns: 1fr;
             }
         }
         
-        /* الرسوم المتحركة */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 1s ease-out;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .pulse {
-            animation: pulse 3s infinite;
+        .highlight {
+            color: #FFBE0B;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <!-- الهيدر -->
     <header>
         <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-sun pulse"></i>
-                    <h1>أسرار النشاط الشمسي</h1>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#home">الرئيسية</a></li>
-                        <li><a href="#about">أنواع النشاط الشمسي</a></li>
-                        <li><a href="#effects">تأثيرات على الأرض</a></li>
-                        <li><a href="#mechanism">آلية النشاط الشمسي</a></li>
-                        <li><a href="#cycle">دورة الشمس</a></li>
-                        <li><a href="#observation">مراقبة الشمس</a></li>
-                    </ul>
-                </nav>
+            <div class="logo">
+                <i class="fas fa-sun"></i>
+                <h1>النشاط الشمسي</h1>
             </div>
         </div>
     </header>
 
-    <!-- القسم الرئيسي -->
-    <section id="home" class="hero">
+    <section class="intro">
         <div class="container">
-            <h2 class="fade-in">النشاط الشمسي: قوة كونية تؤثر على حياتنا</h2>
-            <p class="fade-in">الشمس ليست مجرد مصدر للضوء والحرارة، بل هي نجم ديناميكي تتفجر على سطحه طاقات هائلة تؤثر على النظام الشمسي بأكمله. يتغير النشاط الشمسي في دورات منتظمة، مما يؤدي إلى ظهور <span class="highlight">البقع الشمسية</span>، <span class="highlight">التوهجات الشمسية</span>، و <span class="highlight">الانبعاثات الكتلية الإكليلية</span> التي تصل تأثيراتها إلى كوكبنا.</p>
-            <p class="fade-in">في هذا الموقع، نستكشف معًا أسرار النشاط الشمسي وآثاره المذهلة على كوكب الأرض وتقنياتنا الحديثة.</p>
+            <h2>النشاط الشمسي وتأثيره</h2>
+            <p>الشمس نجم نشط يؤثر على الأرض بعدة طرق. تعرف على أهم مظاهر هذا النشاط وتأثيراته.</p>
         </div>
     </section>
 
-    <!-- قسم عن النشاط الشمسي -->
-    <section id="about" class="about">
+    <section>
         <div class="container">
-            <div class="section-title">
-                <h2>أنواع النشاط الشمسي</h2>
-                <p>تتعدد مظاهر النشاط الشمسي، وكل منها يحمل طاقة هائلة تؤثر على الفضاء المحيط بالشمس</p>
-            </div>
+            <h2>أنواع النشاط الشمسي</h2>
+            <p>أهم مظاهر النشاط الشمسي التي تؤثر على النظام الشمسي</p>
+            
             <div class="cards">
-                <div class="card fade-in">
+                <div class="card">
                     <div class="card-icon">
                         <i class="fas fa-circle"></i>
                     </div>
                     <h3>البقع الشمسية</h3>
-                    <p>مناطق داكنة نسبيًا على سطح الشمس (الغلاف الضوئي) تظهر بسبب التركيز القوي للمجال المغناطيسي الذي يمنع نقل الحرارة بالحمل. تكون درجة حرارتها أقل بحوالي 1500 درجة مئوية من المناطق المحيطة. عدد البقع الشمسية يتغير خلال الدورة الشمسية التي تبلغ 11 عامًا.</p>
-                    <p style="margin-top: 10px;"><strong>الحجم النموذجي:</strong> يمكن أن يصل قطر البقعة الشمسية إلى 50,000 كم (أكبر من قطر الأرض).</p>
+                    <p>مناطق مظلمة على سطح الشمس تظهر بسبب المجال المغناطيسي القوي. عددها يتغير كل 11 سنة.</p>
                 </div>
-                <div class="card fade-in">
+                
+                <div class="card">
                     <div class="card-icon">
                         <i class="fas fa-fire"></i>
                     </div>
                     <h3>التوهجات الشمسية</h3>
-                    <p>انفجارات هائلة من الطاقة تنطلق من سطح الشمس، تعادل مليارات القنابل النووية. تطلق كميات هائلة من الإشعاع والجسيمات المشحونة. تحدث عندما تتحرر الطاقة المغناطيسية المخزنة في الغلاف الجوي للشمس فجأة.</p>
-                    <p style="margin-top: 10px;"><strong>التصنيف:</strong> تصنف التوهجات إلى فئات A, B, C, M, X حسب قوتها، حيث تعتبر فئة X هي الأقوى.</p>
+                    <p>انفجارات طاقة هائلة تنطلق من الشمس. تسبب اضطرابات في الاتصالات والأقمار الصناعية.</p>
                 </div>
-                <div class="card fade-in">
+                
+                <div class="card">
                     <div class="card-icon">
                         <i class="fas fa-wind"></i>
                     </div>
-                    <h3>الانبعاثات الكتلية الإكليلية</h3>
-                    <p>انفجارات ضخمة من البلازما والمجال المغناطيسي من إكليل الشمس (الهالة الشمسية). تتحرك بسرعات تصل إلى 3,000 كم/ثانية وتحمل مليارات الأطنان من المادة الشمسية. عند وصولها إلى الأرض، يمكن أن تسبب عواصف مغناطيسية أرضية قوية.</p>
-                    <p style="margin-top: 10px;"><strong>الوصول إلى الأرض:</strong> تستغرق عادةً بين 1 إلى 5 أيام للوصول إلينا.</p>
+                    <h3>الرياح الشمسية</h3>
+                    <p>تيار من الجسيمات المشحونة تنطلق من الشمس بسرعة عالية نحو الكواكب.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- قسم التأثيرات -->
-    <section id="effects" class="effects">
+    <section class="effects">
         <div class="container">
-            <div class="section-title">
-                <h2>تأثير النشاط الشمسي على الأرض</h2>
-                <p>يؤثر النشاط الشمسي على كوكبنا بعدة طرق، بعضها مرئي ومذهل والبعض الآخر قد يكون مدمرًا للتقنيات الحديثة</p>
-            </div>
-            <div class="effects-list">
-                <div class="effect-item fade-in">
-                    <div class="effect-icon">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <div>
-                        <h3>الشفق القطبي (الأضواء الشمالية والجنوبية)</h3>
-                        <p>عندما تصل الجسيمات المشحونة من الشمس إلى الغلاف الجوي للأرض، تتفاعل مع ذرات الأكسجين والنيتروجين في طبقات الجو العليا، مما يسبب أضواء ملونة رائعة في المناطق القطبية. الأكسجين يعطي ألوانًا خضراء وحمراء، بينما النيتروجين يعطي ألوانًا زرقاء وبنفسجية.</p>
-                        <p style="margin-top: 10px;"><strong>المناطق المتأثرة:</strong> عادةً ما تظهر في دوائر عرض عالية (شمال اسكندنافيا، كندا، ألاسكا، القطب الجنوبي)، ولكن أثناء العواصف الشمسية القوية يمكن رؤيتها في خطوط عرض أقل.</p>
-                    </div>
-                </div>
-                <div class="effect-item fade-in">
-                    <div class="effect-icon">
-                        <i class="fas fa-satellite"></i>
-                    </div>
-                    <div>
-                        <h3>اضطرابات الأقمار الصناعية والاتصالات</h3>
-                        <p>يمكن للعواصف الشمسية القوية أن تعطل عمل الأقمار الصناعية، وتؤثر على أنظمة الملاحة والاتصالات العالمية. الجسيمات المشحونة قد تسبب شحنات كهربائية على الأقمار الصناعية، مما قد يعطل أجهزتها الإلكترونية أو حتى يدمرها.</p>
-                        <p style="margin-top: 10px;"><strong>أمثلة تاريخية:</strong> في عام 2003، تسببت عاصفة شمسية قوية في تلف 47 قمرًا صناعيًا وتأثرت خدمات الهاتف المحمول والملاحة الجوية.</p>
-                    </div>
-                </div>
-                <div class="effect-item fade-in">
-                    <div class="effect-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <div>
-                        <h3>تأثير على شبكات الطاقة والبنية التحتية</h3>
-                        <p>قد تتسبب العواصف الشمسية القوية في حدوث تيارات كهربائية قوية في خطوط الطاقة (تيارات كهربائية أرضية مستحثة)، مما يؤدي إلى انقطاع التيار الكهربائي على نطاق واسع. قد تتأثر أيضًا أنابيب النفط والغاز حيث تتسارع عملية التآكل بسبب هذه التيارات.</p>
-                        <p style="margin-top: 10px;"><strong>أسوأ حدث مسجل:</strong> عاصفة كارينغتون عام 1859 تسببت في اندلاع حرائق في محطات التلغراف وفقدان الاتصالات في جميع أنحاء العالم.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- قسم آلية النشاط الشمسي -->
-    <section id="mechanism" class="mechanism">
-        <div class="container">
-            <div class="section-title">
-                <h2>كيف يحدث النشاط الشمسي؟</h2>
-                <p>آلية النشاط الشمسي معقدة وترتبط بديناميكية المجال المغناطيسي للشمس</p>
+            <h2>تأثيرات على الأرض</h2>
+            <p>كيف يؤثر النشاط الشمسي على كوكبنا</p>
+            
+            <div class="effect-item">
+                <h3>الشفق القطبي</h3>
+                <p>أضواء ملونة تظهر في المناطق القطبية عندما تتفاعل الجسيمات الشمسية مع الغلاف الجوي.</p>
             </div>
             
-            <div class="timeline">
-                <div class="timeline-item fade-in">
-                    <div class="timeline-content">
-                        <h4>الدوران التفاضلي للشمس</h4>
-                        <p>الشمس لا تدور كجسم صلب، فخط الاستواء يدور أسرع من القطبين (25 يومًا عند الاستواء مقابل 35 يومًا عند القطبين). هذا الاختلاف في السرعة يؤدي إلى تشويه وخطوط المجال المغناطيسي.</p>
-                    </div>
-                </div>
-                <div class="timeline-item fade-in">
-                    <div class="timeline-content">
-                        <h4>النقل الحراري بالحمل</h4>
-                        <p>في المنطقة تحت السطحية للشمس (منطقة الحمل)، تنقل البلازما الساخنة الحرارة من الداخل إلى السطح. هذه الحركة تشبه غليان الماء في قدر، وتخلق تيارات حمل ضخمة تنقل المجال المغناطيسي معها.</p>
-                    </div>
-                </div>
-                <div class="timeline-item fade-in">
-                    <div class="timeline-content">
-                        <h4>توليد المجال المغناطيسي</h4>
-                        <p>يتم توليد المجال المغناطيسي للشمس من خلال عملية الدينامو، حيث تتحول الطاقة الحركية من دوران الشمس ونقل الحمل إلى طاقة مغناطيسية. هذا يحدث في منطقة تسمى "tachocline" بين منطقة الإشعاع ومنطقة الحمل.</p>
-                    </div>
-                </div>
-                <div class="timeline-item fade-in">
-                    <div class="timeline-content">
-                        <h4>ظهور البقع الشمسية</h4>
-                        <p>عندما تصبح خطوط المجال المغناطيسي معقدة ومتشابكة، تندفع عبر سطح الشمس مكونة حلقات مغناطيسية. حيث تخرج هذه الحلقات، تظهر البقع الشمسية كمناطق مظلمة بسبب قمع المجال المغناطيسي للنقل الحراري.</p>
-                    </div>
-                </div>
-                <div class="timeline-item fade-in">
-                    <div class="timeline-content">
-                        <h4>إعادة الاتصال المغناطيسي</h4>
-                        <p>عندما تتقاطع أو تعيد تنظيم خطوط المجال المغناطيسي المتعارضة، تتحرر كميات هائلة من الطاقة المخزنة في المجال المغناطيسي. هذه العملية تسبب التوهجات الشمسية والانبعاثات الكتلية الإكليلية.</p>
-                    </div>
-                </div>
+            <div class="effect-item">
+                <h3>اضطرابات التقنية</h3>
+                <p>تؤثر العواصف الشمسية على الأقمار الصناعية والاتصالات وشبكات الكهرباء.</p>
+            </div>
+            
+            <div class="effect-item">
+                <h3>الطقس الفضائي</h3>
+                <p>يؤثر النشاط الشمسي على بيئة الفضاء حول الأرض ويمكن أن يسبب مشاكل للمركبات الفضائية.</p>
             </div>
         </div>
     </section>
 
-    <!-- قسم دورة الشمس -->
-    <section id="cycle" class="cycle-section">
+    <section class="cycle-info">
         <div class="container">
-            <div class="section-title">
-                <h2>الدورة الشمسية: إيقاع الشمس المنتظم</h2>
-                <p>يتغير النشاط الشمسي في دورة منتظمة مدتها حوالي 11 عامًا، تتقلب خلالها أعداد البقع الشمسية والنشاط الشمسي عمومًا</p>
-            </div>
+            <h2>الدورة الشمسية</h2>
+            <p>يتغير النشاط الشمسي في دورة مدتها 11 سنة بين الحد الأدنى والأقصى</p>
             
-            <div class="cycle-container">
-                <div class="cycle-image fade-in">
-                    <img src="https://science.nasa.gov/wp-content/uploads/2023/05/solar-cycle-graph-1.jpg?w=1024" alt="رسم بياني يوضح الدورة الشمسية">
-                    <p style="margin-top: 1rem; color: #aaa; font-style: italic;">رسم بياني يوضح تباين أعداد البقع الشمسية خلال الدورة الشمسية</p>
+            <div class="cycle-stages">
+                <div class="stage">
+                    <h3>الحد الأدنى</h3>
+                    <p>فترة هدوء نسبي مع قلة البقع الشمسية.</p>
                 </div>
-                <div class="cycle-content fade-in">
-                    <div class="cycle-phase">
-                        <h4>الحد الأدنى للطاقة الشمسية</h4>
-                        <p>فترة الهدوء النسبي في النشاط الشمسي، حيث تكون البقع الشمسية قليلة أو معدومة. تستمر حوالي 2-3 سنوات. خلال هذه الفترة، تضعف الرياح الشمسية، مما يسمح للمزيد من الأشعة الكونية بالوصول إلى النظام الشمسي الداخلي.</p>
-                    </div>
-                    <div class="cycle-phase">
-                        <h4>مرحلة التصاعد</h4>
-                        <p>تبدأ أعداد البقع الشمسية في الزيادة بشكل مطرد. يتعاظم النشاط الشمسي تدريجيًا، مع زيادة وتيرة التوهجات الشمسية والانبعاثات الكتلية الإكليلية. تستمر هذه المرحلة حوالي 4-5 سنوات.</p>
-                    </div>
-                    <div class="cycle-phase">
-                        <h4>الحد الأقصى للطاقة الشمسية</h4>
-                        <p>ذروة النشاط الشمسي، حيث تصل أعداد البقع الشمسية إلى أعلى مستوياتها. تحدث أقوى التوهجات الشمسية وأكثرها تواترًا خلال هذه الفترة. تستمر حوالي 2-3 سنوات وتكون الأرض أكثر عرضة للعواصف المغناطيسية.</p>
-                    </div>
-                    <div class="cycle-phase">
-                        <h4>مرحلة الانحدار</h4>
-                        <p>يبدأ النشاط الشمسي في التضاؤل تدريجيًا مع انخفاض أعداد البقع الشمسية، حتى يصل إلى الحد الأدنى مرة أخرى، لتبدأ دورة جديدة. تستغرق هذه المرحلة حوالي 4-5 سنوات.</p>
-                    </div>
+                
+                <div class="stage">
+                    <h3>مرحلة التصاعد</h3>
+                    <p>يزداد النشاط الشمسي تدريجيًا حتى الذروة.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- قسم مراقبة الشمس -->
-    <section id="observation" class="observation-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>كيف يراقب العلماء الشمس؟</h2>
-                <p>يستخدم العلماء تقنيات ومراصد متطورة لمراقبة النشاط الشمسي والتنبؤ بتأثيراته</p>
-            </div>
-            
-            <div class="obs-cards">
-                <div class="obs-card fade-in">
-                    <i class="fas fa-satellite-dish fa-3x" style="color: var(--accent); margin-bottom: 1rem;"></i>
-                    <h3>المراصد الأرضية</h3>
-                    <p>تستخدم تلسكوبات متخصصة لمراقبة الشمس بأطوال موجية مختلفة، مثل مرصد بيغ بير الشمسي في هاواي الذي يملك أكبر تلسكوب شمسي في العالم.</p>
-                </div>
-                <div class="obs-card fade-in">
-                    <i class="fas fa-space-shuttle fa-3x" style="color: var(--primary); margin-bottom: 1rem;"></i>
-                    <h3>المراصد الفضائية</h3>
-                    <p>توجد عدة مراصد في الفضاء تقدم رؤية مستمرة للشمس دون عوائق الغلاف الجوي للأرض، مثل مرصد SOHO ومرصد ديناميكا الشمس (SDO).</p>
-                </div>
-                <div class="obs-card fade-in">
-                    <i class="fas fa-chart-line fa-3x" style="color: var(--sun-yellow); margin-bottom: 1rem;"></i>
-                    <h3>أجهزة القياس المتخصصة</h3>
-                    <p>تستخدم أجهزة مثل المغناطيسات الشمسية لقياس المجال المغناطيسي، والمطيافات لتحليل التركيب الكيميائي للشمس.</p>
+                
+                <div class="stage">
+                    <h3>الحد الأقصى</h3>
+                    <p>ذروة النشاط مع أكبر عدد من البقع الشمسية والتوهجات.</p>
                 </div>
             </div>
             
-            <div style="margin-top: 3rem; background: rgba(255, 255, 255, 0.05); padding: 2rem; border-radius: 15px;" class="fade-in">
-                <h3 style="color: var(--sun-yellow); margin-bottom: 1rem;">التنبؤ بالطقس الفضائي</h3>
-                <p>يعمل العلماء على تطوير نماذج حاسوبية متقدمة للتنبؤ بالنشاط الشمسي وتأثيره على الأرض. تشمل هذه التنبؤات توقيت وصول العواصف الشمسية وشدتها، مما يسمح باتخاذ إجراءات وقائية مثل إعادة توجيه الأقمار الصناعية أو إعداد شبكات الطاقة.</p>
-                <p style="margin-top: 1rem;">مهمة باركر سولار بروب التابعة لناسا هي أول مهمة ستطير مباشرة عبر هالة الشمس (الإكليل) لدراسة آلية تسخين الإكليل وتسارع الرياح الشمسية.</p>
-            </div>
+            <p style="margin-top: 1rem; font-size: 0.95rem; color: #ccc;">الدورة الحالية بدأت في 2019 وستصل ذروتها في 2025</p>
         </div>
     </section>
 
-    <!-- قسم حقائق مذهلة -->
-    <section class="facts-section">
+    <section>
         <div class="container">
-            <div class="section-title">
-                <h2>حقائق مذهلة عن الشمس</h2>
-                <p>تعرف على بعض الحقائق العلمية المدهشة عن شمسنا</p>
-            </div>
+            <h2>حقائق عن الشمس</h2>
+            <p>معلومات مثيرة عن شمسنا</p>
             
             <div class="facts-grid">
-                <div class="fact-box fade-in">
+                <div class="fact-box">
                     <i class="fas fa-temperature-high"></i>
-                    <h4>حرارة لا تصدق</h4>
-                    <p>تصل درجة حرارة لب الشمس إلى 15 مليون درجة مئوية، بينما تبلغ درجة حرارة السطح (الغلاف الضوئي) حوالي 5,500 درجة مئوية.</p>
+                    <h3>حرارة عالية</h3>
+                    <p>حرارة لب الشمس تصل إلى 15 مليون درجة مئوية.</p>
                 </div>
-                <div class="fact-box fade-in">
+                
+                <div class="fact-box">
                     <i class="fas fa-weight-hanging"></i>
-                    <h4>كتلة هائلة</h4>
-                    <p>تشكل الشمس 99.86% من كتلة النظام الشمسي بأكمله. يمكن أن تتسع لمليون كرة أرضية بداخلها.</p>
+                    <h3>كتلة ضخمة</h3>
+                    <p>تشكل الشمس 99.86% من كتلة النظام الشمسي.</p>
                 </div>
-                <div class="fact-box fade-in">
+                
+                <div class="fact-box">
                     <i class="fas fa-history"></i>
-                    <h4>عمر طويل</h4>
-                    <p>يبلغ عمر الشمس حوالي 4.6 مليار سنة، وهي في منتصف عمرها تقريبًا. ستبقى لمدة 5 مليارات سنة أخرى قبل أن تتحول إلى عملاق أحمر.</p>
-                </div>
-                <div class="fact-box fade-in">
-                    <i class="fas fa-lightbulb"></i>
-                    <h4>ضوء قديم</h4>
-                    <p>يستغرق ضوء الشمس حوالي 8 دقائق و20 ثانية للوصول إلى الأرض، ولكن الطاقة التي نراها اليوم بدأت رحلتها من لب الشمس قبل 100,000 سنة!</p>
+                    <h3>عمر طويل</h3>
+                    <p>عمر الشمس 4.6 مليار سنة، وهي في منتصف عمرها.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- الفوتر -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="logo">
-                    <i class="fas fa-sun"></i>
-                    <h1>أسرار النشاط الشمسي</h1>
-                </div>
-                <p>مشروع تعليمي يهدف إلى نشر المعرفة العلمية عن الشمس وتأثيراتها على كوكبنا وتقنياتنا الحديثة</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-                <div class="copyright">
-                    <p>© 2023 مشروع النشاط الشمسي. جميع الحقوق محفوظة.</p>
-                    <p>المعلومات الواردة في هذا الموقع تستند إلى أبحاث علمية موثوقة من ناسا ووكالات فضاء عالمية.</p>
-                </div>
+            <div class="logo">
+                <i class="fas fa-sun"></i>
+                <h1>النشاط الشمسي</h1>
+            </div>
+            
+            <p>إعداد: فهد الخليف</p>
+            
+            <div class="social-icons">
+                <a href="#">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2026 جميع الحقوق محفوظة</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // كود لجعل العناصر تظهر بتأثير fade-in عند التمرير
         document.addEventListener('DOMContentLoaded', function() {
-            // تأثير عند التمرير
-            const fadeElements = document.querySelectorAll('.fade-in');
+            // تأثير بسيط للبطاقات عند التمرير
+            const cards = document.querySelectorAll('.card, .fact-box, .effect-item, .stage');
             
-            const fadeInOnScroll = function() {
-                fadeElements.forEach(element => {
-                    const elementTop = element.getBoundingClientRect().top;
-                    const elementVisible = 150;
-                    
-                    if (elementTop < window.innerHeight - elementVisible) {
-                        element.style.opacity = "1";
-                        element.style.transform = "translateY(0)";
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
                     }
                 });
-            };
+            }, { threshold: 0.1 });
             
-            // إخفاء العناصر في البداية
-            fadeElements.forEach(element => {
-                element.style.opacity = "0";
-                element.style.transform = "translateY(20px)";
-                element.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+            cards.forEach(card => {
+                card.style.opacity = "0";
+                card.style.transform = "translateY(20px)";
+                card.style.transition = "opacity 0.5s, transform 0.5s";
+                observer.observe(card);
             });
-            
-            // التحقق عند التحميل وعند التمرير
-            fadeInOnScroll();
-            window.addEventListener('scroll', fadeInOnScroll);
-            
-            // تنعيم التمرير للروابط
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-            
-            // تأثير النبض للشمس في الهيدر
-            const sunIcon = document.querySelector('.pulse');
-            setInterval(() => {
-                sunIcon.style.animation = 'none';
-                setTimeout(() => {
-                    sunIcon.style.animation = 'pulse 3s infinite';
-                }, 10);
-            }, 3000);
         });
     </script>
 </body>
