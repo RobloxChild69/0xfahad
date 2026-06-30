@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nes Guide · HWID Unban</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ----- Reset & Base ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0B0A0B;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #F4F2EB;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        /* ----- Header / Navigation ----- */
+        .guide-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid #2A2520;
+            padding-bottom: 1.2rem;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-icon {
+            background: #C9A87C;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0B0A0B;
+            box-shadow: 0 4px 12px rgba(201, 168, 124, 0.3);
+        }
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #F4F2EB, #D8D0BF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            font-weight: 500;
+        }
+        .nav-links a {
+            color: #9a8e82;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #F4F2EB;
+        }
+        .nav-links a.active {
+            background: #2A2520;
+            padding: 6px 14px;
+            border-radius: 30px;
+        }
+        /* ----- Page switching ----- */
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        /* ----- Back link ----- */
+        .back-link {
+            display: inline-block;
+            margin: 1.8rem 0 0.5rem;
+            color: #D8D0BF;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .back-link i {
+            margin-right: 8px;
+        }
+        .back-link:hover {
+            color: #F4F2EB;
+        }
+        /* ----- Home cards ----- */
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0 3rem;
+        }
+        .guide-card {
+            background: #161312;
+            border-radius: 24px;
+            padding: 2rem 1.8rem;
+            border: 1px solid #2A2520;
+            transition: 0.25s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+        }
+        .guide-card:hover {
+            border-color: #C9A87C;
+            transform: translateY(-6px);
+            background: #1C1816;
+        }
+        .guide-card .card-icon {
+            font-size: 2.4rem;
+            color: #C9A87C;
+            margin-bottom: 1rem;
+            background: #2A2520;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+        }
+        .guide-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.3px;
+            color: #F4F2EB;
+        }
+        .guide-card p {
+            color: #D8D0BF;
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+        .badge {
+            background: #2A2520;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #D8D0BF;
+            display: inline-block;
+        }
+        .badge i {
+            margin-right: 6px;
+            color: #C9A87C;
+        }
+        /* ----- Step progress (shared) ----- */
+        .step-progress {
+            background: #161312;
+            border-radius: 40px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0 2.5rem;
+            border: 1px solid #2A2520;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .step-progress .step-info {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+        .step-progress .step-counter {
+            background: #C9A87C;
+            padding: 6px 18px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #0B0A0B;
+        }
+        .progress-bar-bg {
+            width: 200px;
+            height: 6px;
+            background: #2A2520;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #C9A87C, #D8A48B);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+        /* ----- Step cards (wizard pages) ----- */
+        .step-page {
+            display: none;
+            animation: fadeIn 0.25s ease;
+        }
+        .step-page.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .step-card {
+            background: #161312;
+            border-radius: 28px;
+            padding: 2.2rem 2.5rem;
+            border: 1px solid #2A2520;
+            margin-bottom: 2rem;
+        }
+        .step-card h2 {
+            font-size: 1.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #F4F2EB;
+        }
+        .step-card h2 i {
+            color: #C9A87C;
+            font-size: 2rem;
+        }
+        .warning-box {
+            background: #261E1B;
+            border-left: 6px solid #D8A48B;
+            padding: 1.2rem 1.8rem;
+            border-radius: 16px;
+            margin: 1.5rem 0;
+            color: #F4D4C4;
+        }
+        .warning-box i {
+            color: #D8A48B;
+            margin-right: 12px;
+        }
+        .btn-primary {
+            background: #C9A87C;
+            border: none;
+            color: #0B0A0B;
+            padding: 12px 30px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid #D8A48B;
+            text-decoration: none;
+        }
+        .btn-primary:hover {
+            background: #D8A48B;
+            transform: scale(1.02);
+            box-shadow: 0 6px 18px rgba(201, 168, 124, 0.4);
+            color: #0B0A0B;
+        }
+        .btn-support {
+            background: #C9A87C;
+            border: none;
+            color: #0B0A0B;
+            padding: 16px 40px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+            margin-top: 0.5rem;
+        }
+        .btn-support:hover {
+            background: #D8A48B;
+            transform: scale(1.03);
+            box-shadow: 0 6px 24px rgba(201, 168, 124, 0.4);
+            color: #0B0A0B;
+        }
+        .btn-nav {
+            display: inline-block;
+            background: transparent;
+            color: #D8D0BF;
+            padding: 10px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+            border: 1px solid #2A2520;
+            cursor: pointer;
+            margin-top: 1rem;
+            margin-right: 0.8rem;
+        }
+        .btn-nav:hover {
+            background: #2A2520;
+            border-color: #C9A87C;
+            color: #F4F2EB;
+        }
+        .btn-next {
+            background: #C9A87C;
+            border: 1px solid #D8A48B;
+            color: #0B0A0B;
+        }
+        .btn-next:hover {
+            background: #D8A48B;
+            transform: scale(1.02);
+            box-shadow: 0 6px 18px rgba(201, 168, 124, 0.4);
+            color: #0B0A0B;
+        }
+        .btn-prev {
+            background: transparent;
+            border: 1px solid #2A2520;
+            color: #D8D0BF;
+        }
+        .btn-prev:hover {
+            background: #2A2520;
+            border-color: #C9A87C;
+            color: #F4F2EB;
+        }
+        /* ----- Support boxes ----- */
+        .support-box {
+            background: #1C1816;
+            border: 1px solid #C9A87C;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .support-box i {
+            font-size: 3rem;
+            color: #C9A87C;
+            margin-bottom: 1rem;
+        }
+        .support-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #F4F2EB;
+        }
+        .support-box p {
+            color: #D8D0BF;
+            margin-bottom: 1rem;
+        }
+        .support-box .discord-link {
+            display: inline-block;
+            background: #C9A87C;
+            color: #0B0A0B;
+            padding: 12px 30px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .support-box .discord-link:hover {
+            background: #D8A48B;
+            transform: scale(1.02);
+            color: #0B0A0B;
+        }
+        /* ----- Responsive ----- */
+        @media (max-width: 700px) {
+            .guide-header {
+                flex-direction: column;
+                align-items: start;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 0.8rem;
+            }
+            .step-progress {
+                flex-direction: column;
+                align-items: start;
+                gap: 1rem;
+            }
+            .step-card {
+                padding: 1.5rem;
+            }
+            .btn-nav {
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+        }
+        .footer-note {
+            margin-top: 3.5rem;
+            text-align: center;
+            color: #9a8e82;
+            font-size: 0.85rem;
+            border-top: 1px solid #2A2520;
+            padding-top: 2rem;
+        }
+        .footer-note i {
+            color: #C9A87C;
+        }
+        .compatible-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+        .compatible-grid span {
+            background: #2A2520;
+            padding: 8px 16px;
+            border-radius: 30px;
+            text-align: center;
+            font-weight: 500;
+            border: 1px solid #3A322C;
+            color: #D8D0BF;
+        }
+        .nav-buttons {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .download-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+            margin: 0.5rem 0 1rem 0;
+        }
+        .download-row .btn-primary {
+            margin: 0;
+        }
+        .download-row .file-info {
+            color: #D8D0BF;
+            font-size: 0.85rem;
+        }
+        .btn-driver {
+            background: #C9A87C;
+            border-color: #D8A48B;
+            color: #0B0A0B;
+        }
+        .btn-driver:hover {
+            background: #D8A48B;
+            transform: scale(1.02);
+            box-shadow: 0 6px 18px rgba(201, 168, 124, 0.4);
+        }
+        .step-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .step-card ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #2A2520;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #D8D0BF;
+        }
+        .step-card ul li i {
+            color: #C9A87C;
+            width: 20px;
+            margin-top: 4px;
+        }
+        .step-card ol {
+            padding-left: 1.5rem;
+            margin: 0.5rem 0 1rem 0;
+            color: #D8D0BF;
+        }
+        .step-card ol li {
+            padding: 4px 0;
+        }
+        .step-card h4 {
+            color: #D8D0BF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- ===== HEADER ===== -->
+        <div class="guide-header">
+            <div class="logo-area">
+                <div class="logo-icon"><i class="fas fa-shield-halved"></i></div>
+                <span class="logo-text">Nes Guide</span>
+            </div>
+            <div class="nav-links">
+                <a class="active" data-page="home"><i class="fas fa-home"></i> Home</a>
+                <a data-page="eac-guide"><i class="fas fa-gamepad"></i> EAC/BE</a>
+                <a data-page="valorant-guide"><i class="fas fa-crosshairs"></i> Valorant</a>
+            </div>
+        </div>
+
+        <!-- ===== HOME PAGE ===== -->
+        <div id="home" class="page active">
+            <div style="margin-bottom: 1.8rem;">
+                <h1 style="font-size: 2.2rem; font-weight: 600; letter-spacing: -0.5px; color: #F4F2EB;">HWID Unban Setup</h1>
+                <p style="color: #D8D0BF; max-width: 600px;">Choose which game you want to spoof for</p>
+            </div>
+
+            <div class="guide-grid">
+                <div class="guide-card" data-page="valorant-guide">
+                    <div class="card-icon"><i class="fas fa-crosshairs"></i></div>
+                    <h3>Valorant Spoof</h3>
+                    <p>Complete HWID spoofing for Valorant with Vanguard bypass</p>
+                    <span class="badge"><i class="fas fa-arrow-right"></i> Select Valorant</span>
+                </div>
+                <div class="guide-card" data-page="eac-guide">
+                    <div class="card-icon"><i class="fas fa-robot"></i></div>
+                    <h3>EAC &amp; BE Games Spoof</h3>
+                    <p>Simplified spoofing for Fortnite, Rust, and other EAC/BE games</p>
+                    <span class="badge"><i class="fas fa-arrow-right"></i> Select EAC/BE</span>
+                </div>
+            </div>
+
+            <div class="support-box">
+                <i class="fab fa-discord"></i>
+                <h3>Facing an issue?</h3>
+                <p>Contact technical support on Discord and we'll help you immediately</p>
+                <a href="https://discord.gg/nees" target="_blank" class="discord-link">
+                    <i class="fab fa-discord"></i> discord.gg/nees
+                </a>
+            </div>
+        </div>
+
+        <!-- ===== EAC / BE GUIDE ===== -->
+        <div id="eac-guide" class="page">
+            <span class="back-link" data-page="home"><i class="fas fa-arrow-left"></i> Back to Home</span>
+            <h1 style="font-size: 2rem; margin: 1.2rem 0 0.2rem; color: #F4F2EB;">EAC &amp; BE Games HWID Spoof Guide</h1>
+            <p style="color: #D8D0BF; margin-bottom: 0.8rem;">Complete step‑by‑step guide for Fortnite, Rust, Apex, and other EAC/BE games</p>
+
+            <div class="warning-box" style="border-left-color: #C9A87C; background: #1C1816; margin-bottom: 2rem;">
+                <i class="fab fa-discord" style="color: #C9A87C;"></i>
+                <strong style="color:#F4F2EB;">Need help?</strong> <span style="color:#D8D0BF;">Contact technical support:</span> <a href="https://discord.gg/nees" target="_blank" style="color: #C9A87C; text-decoration: underline;">discord.gg/nees</a>
+            </div>
+
+            <div class="step-progress">
+                <div class="step-info">
+                    <span class="step-counter" id="eac-step-counter">Step 1 of 10</span>
+                    <span id="eac-percent-text" style="color: #D8D0BF;">10% complete</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-fill" id="eac-progress-fill" style="width: 10%;"></div>
+                </div>
+            </div>
+
+            <div id="eac-steps">
+
+                <!-- STEP 1 -->
+                <div class="step-page active" data-step="0">
+                    <div class="step-card">
+                        <h2><i class="fas fa-window-restore"></i> Reinstall Windows 10</h2>
+                        <p style="color: #D8D0BF;">Clean install of official Windows 10 — <strong style="color:#F4F2EB;">critical</strong> for EAC/BE compatibility.</p>
+                        <div class="warning-box">
+                            <i class="fas fa-circle-exclamation"></i>
+                            <strong>WARNING:</strong> This will ERASE ALL DATA on your computer! Backup important files first!
+                        </div>
+                        <a href="https://www.microsoft.com/en-us/software-download/windows10" target="_blank" class="btn-primary"><i class="fas fa-download"></i> Download Windows 10</a>
+
+                        <h4 style="margin-top: 2rem; color: #D8D0BF;"><i class="fas fa-usb" style="color: #C9A87C;"></i> Create Bootable USB Drive</h4>
+                        <p style="color: #D8D0BF;">Use the Media Creation Tool to create a bootable USB drive with Windows 10.</p>
+                        <ul style="list-style: none; padding: 0; margin: 0.5rem 0 1rem 0;">
+                            <li style="padding: 4px 0; color: #D8D0BF;">✅ Run the Media Creation Tool and accept the license terms</li>
+                            <li style="padding: 4px 0; color: #D8D0BF;">✅ Select "Create installation media for another PC"</li>
+                            <li style="padding: 4px 0; color: #D8D0BF;">✅ Choose language, edition (Windows 10), and 64‑bit architecture</li>
+                            <li style="padding: 4px 0; color: #D8D0BF;">✅ Select "USB flash drive" (minimum 8GB required)</li>
+                            <li style="padding: 4px 0; color: #D8D0BF;">✅ Select your USB drive and click Next</li>
+                            <li style="padding: 4px 0; color: #D8D0BF;">✅ Wait for the download and creation process to complete</li>
+                        </ul>
+
+                        <h4 style="color: #D8D0BF;"><i class="fas fa-list-check" style="color: #C9A87C;"></i> Installation Steps</h4>
+                        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px;">
+                            <li style="color: #D8D0BF;"><span style="background: #C9A87C; color:#0B0A0B; border-radius: 30px; padding: 0 12px; font-weight:600; margin-right: 10px;">1</span> Boot from the USB drive (press F12/F8/Del during startup)</li>
+                            <li style="color: #D8D0BF;"><span style="background: #C9A87C; color:#0B0A0B; border-radius: 30px; padding: 0 12px; font-weight:600; margin-right: 10px;">2</span> Start the Windows installation</li>
+                            <li style="color: #D8D0BF;"><span style="background: #C9A87C; color:#0B0A0B; border-radius: 30px; padding: 0 12px; font-weight:600; margin-right: 10px;">3</span> Select <strong style="color:#F4F2EB;">"Custom: Install Windows only (advanced)"</strong></li>
+                            <li style="color: #D8D0BF;"><span style="background: #C9A87C; color:#0B0A0B; border-radius: 30px; padding: 0 12px; font-weight:600; margin-right: 10px;">4</span> <span style="color: #D8A48B;">Delete ALL partitions</span> on all drives</li>
+                            <li style="color: #D8D0BF;"><span style="background: #C9A87C; color:#0B0A0B; border-radius: 30px; padding: 0 12px; font-weight:600; margin-right: 10px;">5</span> Select the unallocated space and click Next to install</li>
+                            <li style="color: #D8D0BF;"><span style="background: #C9A87C; color:#0B0A0B; border-radius: 30px; padding: 0 12px; font-weight:600; margin-right: 10px;">6</span> <i class="fas fa-user-slash" style="color:#C9A87C;"></i> Do NOT sign in with a Microsoft account — use a local account</li>
+                        </ul>
+                        <p style="color: #9a8e82; font-style: italic; margin-top: 0.8rem;"><i class="fas fa-check-circle" style="color: #C9A87C;"></i> Using official Windows 10 ensures maximum compatibility with EAC and BattlEye.</p>
+                        <div class="nav-buttons">
+                            <button onclick="nextEacStep()" class="btn-nav btn-next">Next Step <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="step-page" data-step="1">
+                    <div class="step-card">
+                        <h2><i class="fas fa-microchip"></i> Install Driver</h2>
+                        <p style="color: #D8D0BF;">Install required software and drivers.</p>
+                        <h4 style="margin-top: 1rem; color: #D8D0BF;">Install Required Software</h4>
+                        <div style="margin: 1rem 0; padding: 1.2rem; background: #1C1816; border-radius: 16px; border: 1px solid #2A2520;">
+                            <div class="download-row">
+                                <a href="https://files.catbox.moe/enli0b.rar" target="_blank" class="btn-primary btn-driver">
+                                    <i class="fas fa-file-archive"></i> Download drivers.rar
+                                </a>
+                                <span class="file-info"><i class="fas fa-info-circle" style="color: #C9A87C;"></i> Extract and install the required drivers</span>
+                            </div>
+                        </div>
+                        <p style="margin-top: 0.5rem; color: #9a8e82;">Ask retail for (P/N) drivers from manufacturer's website (NVIDIA, AMD, or Intel).</p>
+                        <div class="nav-buttons">
+                            <button onclick="prevEacStep()" class="btn-nav btn-prev"><i class="fas fa-arrow-left"></i> Previous</button>
+                            <button onclick="nextEacStep()" class="btn-nav btn-next">Next Step <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3 -->
+                <div class="step-page" data-step="2">
+                    <div class="step-card">
+                        <h2><i class="fas fa-shield-virus"></i> Disable Virus &amp; Threat Protection</h2>
+                        <p style="color: #D8D0BF;">Prevent interference during spoofing.</p>
+                        <div style="margin: 1rem 0; padding: 1.2rem; background: #1C1816; border-radius: 16px; border: 1px solid #2A2520;">
+                            <h4 style="color: #D8D0BF; margin-bottom: 0.5rem;"><i class="fas fa-download" style="color: #C9A87C;"></i> Download Required Tools</h4>
+                            <div class="download-row">
+                                <a href="https://files.catbox.moe/xu5iql.rar" target="_blank" class="btn-primary btn-driver">
+                                    <i class="fas fa-file-archive"></i> Download Defender Tools
+                                </a>
+                                <span class="file-info"><i class="fas fa-info-circle" style="color: #C9A87C;"></i> Contains Defender Control &amp; Windows Update Blocker</span>
+                            </div>
+                        </div>
+                        <h4 style="color: #D8D0BF; margin-top: 1.5rem;">Steps to Disable Protection:</h4>
+                        <ol style="color: #D8D0BF;">
+                            <li style="padding: 4px 0;"><strong style="color:#F4F2EB;">Disable Virus &amp; Threat Protection:</strong> Go to Windows Security → Virus &amp; threat protection → Manage settings → Turn off Real-time protection, Cloud-delivered protection, and Automatic sample submission.</li>
+                            <li style="padding: 4px 0;"><strong style="color:#F4F2EB;">Disable Core Isolation:</strong> Go to Windows Security → Device security → Core isolation details → Turn off Memory integrity.</li>
+                            <li style="padding: 4px 0;"><strong style="color:#F4F2EB;">Disable Windows Defender &amp; Updates (Using Tools):</strong>
+                                <ul style="list-style: none; padding-left: 1.5rem; margin-top: 0.5rem;">
+                                    <li style="padding: 4px 0; color: #D8D0BF;">• Extract the downloaded <strong style="color:#F4F2EB;">Defender Tools</strong> archive.</li>
+                                    <li style="padding: 4px 0; color: #D8D0BF;">• Run <strong style="color:#F4F2EB;">Defender Control</strong> and click "Disable Windows Defender".</li>
+                                    <li style="padding: 4px 0; color: #D8D0BF;">• Run <strong style="color:#F4F2EB;">Windows Update Blocker</strong> and click "Disable Service".</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <div class="warning-box" style="border-left-color: #C9A87C; background: #1C1816; margin-top: 1rem;">
+                            <i class="fas fa-exclamation-triangle" style="color: #C9A87C;"></i>
+                            <strong style="color:#F4F2EB;">Important:</strong> <span style="color:#D8D0BF;">Disabling these protections temporarily is necessary for the spoofing process. Re-enable them after completing the guide.</span>
+                        </div>
+                        <div class="nav-buttons">
+                            <button onclick="prevEacStep()" class="btn-nav btn-prev"><i class="fas fa-arrow-left"></i> Previous</button>
+                            <button onclick="nextEacStep()" class="btn-nav btn-next">Next Step <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 4 -->
+                <div class="step-page" data-step="3">
+                    <div class="step-card">
+                        <h2><i class="fas fa-list"></i> Disable Background Apps &amp; Startup Programs</h2>
+                        <p style="color: #D8D0BF;">Clean up unnecessary processes.</p>
+                        <h4 style="color: #D8D0BF;">Disable Background Apps</h4>
+                        <ol style="padding-left: 1.5rem; margin-bottom: 1rem; color: #D8D0BF;">
+                            <li>Open Settings → Privacy → Background apps</li>
+                            <li>Turn off all background apps</li>
+                        </ol>
+                        <h4 style="color: #D8D0BF;">Disable Startup Applications</h4>
+                        <ol style="padding-left: 1.5rem; color: #D8D0BF;">
+                            <li>Press Ctrl+Shift+Esc to open Task Manager</li>
+                            <li>Go to the Startup tab</li>
+                            <li>Disable ALL startup applications</li>
+                        </ol>
+                        <div class="nav-buttons">
+                            <button onclick="prevEacStep()" class="btn-nav btn-prev"><i class="fas fa-arrow-left"></i> Previous</button>
+                            <button onclick="nextEacStep()" class="btn-nav btn-next">Next Step <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 5 -->
+                <div class="step-page" data-step="4">
+                    <div class="step-card">
+                        <h2><i class="fas fa-save"></i> Save Your Original Serials</h2>
+                        <div class="warning-box" style="border-left-color: #C9A87C; background: #1C1816;">
+                            <i class="fas fa-exclamation-triangle" style="color: #C9A87C;"></i>
+                            <strong style="color:#F4F2EB;">CRITICAL:</strong> <span style="color:#D8D0BF;">Save your serials NOW! You'll need them to verify the spoof worked.</span>
+                        </div>
+                        <h4 style="color: #D8D0BF;">How to Save Serials:</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 4px 0; color: #D8D0BF;">1. Use the Serial Checker tool from the tools pack you downloaded</li>
+                            <li style="padding: 4px 0; color: #D8D0BF;">2. Copy all your current serials</li>
+                            <li style="padding: 4px 0; color: #D8D0BF;">3. Save them in a text document on your desktop</li>
+                        </ul>
+                        <div style="margin: 1.5rem 0; padding: 1.2rem; background: #1C1816; border-radius: 16px; border: 1px solid #2A2520;">
+                            <h4 style="color: #D8D0BF; margin-bottom: 0.5rem;"><i class="fas fa-download" style="color: #C9A87C;"></i> Download Serial Checker</h4>
+                            <div class="download-row">
+                                <a href="https://cdn.discordapp.com/attachments/1519749892753326192/1521523552015220776/serial_checker.rar?ex=6a4524bb&is=6a43d33b&hm=fcc5784564b966e1036467259baa805393e6e3fdb507364efb054e5e90f44cc3&" target="_blank" class="btn-primary" style="background: #C9A87C; border-color: #D8A48B;">
+                                    <i class="fas fa-file-archive"></i> serial_checker.rar
+                                </a>
+                                <span class="file-info"><i class="fas fa-info-circle" style="color: #C9A87C;"></i> Extract and run the tool to view your serials</span>
+                            </div>
+                        </div>
+                        <div class="nav-buttons">
+                            <button onclick="prevEacStep()" class="btn-nav btn-prev"><i class="fas fa-arrow-left"></i> Previous</button>
+                            <button onclick="nextEacStep()" class="btn-nav btn-next">Next Step <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 6 -->
+                <div class="step-page" data-step="5">
+                    <div class="step-card">
+                        <h2><i class="fas fa-download"></i> Download Spoofer</h2>
+                        <p style="color: #D8D0BF;">Get the latest Ghosty-Spoofer.</p>
+                        <div class="warning-box" style="border-left-color: #C9A87C; background: #1C1816;">
+                            <i class="fas fa-sync-alt" style="color: #C9A87C;"></i>
+                            <strong style="color:#F4F2EB;">Auto-Update Added!</strong> <span style="color:#D8D0BF;">You no longer need to download new versions. The loader will update automatically when new versions are available.</span>
+                        </div>
+                        <a href="#" class="btn-primary"><i class="fas fa-cloud-download-alt"></i> Download Ghosty-Spoofer</a>
+                        <p style="margin-top: 0.5rem; color: #9a8e82;">Click to use password.</p>
+                        <h4 style="margin-top: 1rem; color: #D8D0BF;">Update Logs:</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 4px 0; color: #D8D0BF;">• EAC &amp; BE Spoof updated and optimized</li>
+                            <li style="padding: 4px 0; color: #D8D0BF;">• Better performance and stability</li>
+                            <li style="padding: 4px 0; color: #D8D0BF;">• Auto-update feature added — no more manual download</li>
+                        </ul>
+                        <div class="nav-buttons">
+                            <button onclick="prevEacStep()" class="btn-nav btn-prev"><i class="fas fa-arrow-left"></i> Previous</button>
+                            <button onclick="nextEacStep()" class="btn-nav btn-next">Next Step <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 7 -->
+                <div class="step-page" data-step="6">
+                    <div class="step-card">
+                        <h2><i class="fas fa-play"></i> Run EAC &amp; BE Spoof</h2>
+                        <p style="color: #D8D0BF;">Execute the spoofing process.</p>
+                        <h4 style="color: #D8D0BF;">Spoofing Steps:</h4>
+                        <ol style="padding-left: 1.5rem; color: #D8D0BF;">
+                            <li>Right-click the Ghosty-Spoofer and select "Run as Administrator"</li>
+                            <li>Click the EAC &amp; BE button to spoof for EAC/BattleEye games</li>
+                            <li>Wait for the process to complete</li>
+                            <li>Your computer will automatically restart</li>
+                        </ol>
+                        <p style="margin-top: 1rem; color: #9a8e82;"><i class="fas fa-info-circle" style="color: #C9A87C;"></i> No BIOS modifications or TPM changes needed for EAC/BE games — just run and go!</p>
+                        <div class="nav-buttons">
+                            <button onclick="prevEacStep()" class="btn-nav btn-prev"><i class="fas fa-arrow-left"></i> Previous</button>
+                            <button onclick="nextEacStep()" class="btn-nav btn-next">Next Step <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 8 -->
+                <div class="step-page" data-step="7">
+                    <div class="step-card">
+                        <h2><i class="fas fa-check-circle"></i> Verify Serials Changed</h2>
+                        <p style="color: #D8D0BF;">Compare before and after.</p>
+                        <h4 style="color: #D8D0BF;">How to Verify:</h4>
+                        <ol style="padding-left: 1.5rem; color: #D8D0BF;">
+                            <li>Run the Serial Checker tool again</li>
+                            <li>Compare the new serials with the ones you saved earlier</li>
+                            <li>If they're different, the spoof was successful!</li>
+                        </ol>
+                        <p style="margin-top: 0.5rem; color: #9a8e82;">All serials should be different from your original ones.</p>
+                        <div class="nav-buttons">
+                            <button onclick="prevEacStep()" class="btn-nav btn-prev"><i class="fas fa-arrow-left"></i> Previous</button>
+                            <button onclick="nextEacStep()" class="btn-nav btn-next">Next Step <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 9 -->
+                <div class="step-page" data-step="8">
+                    <div class="step-card">
+                        <h2><i class="fas fa-user-plus"></i> Test with New Account</h2>
+                        <p style="color: #D8D0BF;">Create a new account to test the spoof.</p>
+                        <h4 style="color: #D8D0BF;">Testing Steps:</h4>
+                        <ol style="padding-left: 1.5rem; color: #D8D0BF;">
+                            <li>Create a NEW account for the game you want to play (Epic Games, Steam, etc.)</li>
+                            <li>Download and install the game</li>
+                            <li>Launch the game and play for a while to confirm everything works</li>
+                        </ol>
+                        <div class="warning-box" style="border-left-color: #C9A87C; background: #1C1816; margin-top: 1rem;">
+                            <i class="fas fa-exclamation-circle" style="color: #C9A87C;"></i>
+                            <span style="color:#D8D0BF;">Always test with a new account first to make sure the spoof is working before using your main account.</span>
+                        </div>
+                        <div class="nav-buttons">
+                            <button onclick="prevEacStep()" class="btn-nav btn-prev"><i class="fas fa-arrow-left"></i> Previous</button>
+                            <button onclick="nextEacStep()" class="btn-nav btn-next">Next Step <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 10 -->
+                <div class="step-page" data-step="9">
+                    <div class="step-card" style="border-color: #C9A87C;">
+                        <h2><i class="fas fa-trophy"></i> All Done!</h2>
+                        <p style="color: #F4F2EB;">You've successfully spoofed your HWID for EAC &amp; BattleEye games.</p>
+                        <h4 style="color: #D8D0BF; margin-top: 1.5rem;">Compatible Games:</h4>
+                        <div class="compatible-grid">
+                            <span>Fortnite</span>
+                            <span>Rust</span>
+                            <span>Apex Legends</span>
+                            <span>DayZ</span>
+                            <span>Dead by Daylight</span>
+                            <span>The Finals</span>
+                            <span>FiveM</span>
+                            <span>Call of Duty</span>
+                            <span>Other EAC/BE games</span>
+                        </div>
+                        <p style="margin-top: 1.5rem; color: #9a8e82;">Enjoy your game! Remember to always test with a new account first.</p>
+                        <div class="nav-buttons">
+                            <button onclick="prevEacStep()" class="btn-nav btn-prev"><i class="fas fa-arrow-left"></i> Previous</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="support-box" style="margin-top: 2rem;">
+                <i class="fab fa-discord"></i>
+                <h3>Facing an issue during spoofing?</h3>
+                <p>Our technical support team is ready to help you on Discord</p>
+                <a href="https://discord.gg/nees" target="_blank" class="discord-link">
+                    <i class="fab fa-discord"></i> discord.gg/nees
+                </a>
+            </div>
+        </div>
+
+        <!-- ===== VALORANT GUIDE ===== -->
+        <div id="valorant-guide" class="page">
+            <span class="back-link" data-page="home"><i class="fas fa-arrow-left"></i> Back to Home</span>
+            <h1 style="font-size: 2rem; margin: 1.2rem 0 0.2rem; color: #F4F2EB;">Valorant HWID Spoof Guide</h1>
+            <p style="color: #D8D0BF; margin-bottom: 0.8rem;">Complete HWID spoofing for Valorant with Vanguard bypass</p>
+
+            <div class="step-progress">
+                <div class="step-info">
+                    <span class="step-counter">Step 1 of 1</span>
+                    <span style="color: #D8D0BF;">100% complete</span>
+                </div>
+                <div class="progress-bar-bg"><div class="progress-fill" style="width: 100%;"></div></div>
+            </div>
+
+            <div class="step-card" style="text-align: center; padding: 3rem 2.5rem;">
+                <i class="fas fa-user-cog" style="font-size: 4rem; color: #D8A48B; margin-bottom: 1.5rem;"></i>
+                <h2 style="justify-content: center; color: #F4F2EB;">Personalized Assistance</h2>
+                <p style="color: #D8D0BF; max-width: 600px; margin: 0 auto 1.5rem auto; font-size: 1.1rem;">
+                    Valorant spoofing requires a tailored approach (TPM ON / OFF, BIOS flash, etc.).<br />
+                    Our support team specializes in this and will provide you with the exact steps privately.
+                </p>
+                <div class="warning-box" style="border-left-color: #D8A48B; background: #261E1B; max-width: 600px; margin: 0 auto 2rem auto;">
+                    <i class="fas fa-shield" style="color: #D8A48B;"></i>
+                    <strong style="color:#F4F2EB;">TPM ON / OFF methods available.</strong> <span style="color:#D8D0BF;">Contact us to get the right guide for your system.</span>
+                </div>
+                <a href="https://discord.gg/nees" target="_blank" class="btn-support" style="background: #D8A48B; border-color: #C9A87C;">
+                    <i class="fab fa-discord"></i> Get Support Now
+                </a>
+            </div>
+
+            <div class="support-box" style="margin-top: 1rem; border-color: #D8A48B;">
+                <i class="fab fa-discord" style="color: #D8A48B;"></i>
+                <h3>Specialized Valorant team</h3>
+                <p>Get direct help with Vanguard bypass, MAC spoofing, and permanent spoof.</p>
+                <a href="https://discord.gg/nees" target="_blank" class="discord-link" style="background: #D8A48B; color: #0B0A0B;">
+                    <i class="fab fa-discord"></i> discord.gg/nees
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            <i class="fas fa-shield"></i> Nes Guide · for educational purposes
+        </div>
+    </div>
+
+    <script>
+        // ----- EAC Wizard Logic -----
+        const eacSteps = document.querySelectorAll('#eac-steps .step-page');
+        const eacCounter = document.getElementById('eac-step-counter');
+        const eacPercent = document.getElementById('eac-percent-text');
+        const eacFill = document.getElementById('eac-progress-fill');
+        let eacCurrent = 0;
+
+        window.nextEacStep = function() {
+            if (eacCurrent < eacSteps.length - 1) {
+                eacCurrent++;
+                updateEacStep(eacCurrent);
+            }
+        };
+
+        window.prevEacStep = function() {
+            if (eacCurrent > 0) {
+                eacCurrent--;
+                updateEacStep(eacCurrent);
+            }
+        };
+
+        function updateEacStep(index) {
+            eacSteps.forEach((el, i) => {
+                el.classList.toggle('active', i === index);
+            });
+            const num = index + 1;
+            const total = eacSteps.length;
+            eacCounter.textContent = `Step ${num} of ${total}`;
+            const percent = Math.round((num / total) * 100);
+            eacPercent.textContent = `${percent}% complete`;
+            eacFill.style.width = `${percent}%`;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ----- Page switching -----
+        const pages = {
+            home: document.getElementById('home'),
+            'eac-guide': document.getElementById('eac-guide'),
+            'valorant-guide': document.getElementById('valorant-guide')
+        };
+
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const cardLinks = document.querySelectorAll('.guide-card');
+        const backLinks = document.querySelectorAll('.back-link');
+
+        function showPage(pageId) {
+            Object.keys(pages).forEach(key => {
+                pages[key].classList.remove('active');
+            });
+            if (pages[pageId]) {
+                pages[pageId].classList.add('active');
+            }
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.page === pageId) {
+                    link.classList.add('active');
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const page = this.dataset.page;
+                if (page) showPage(page);
+            });
+        });
+
+        cardLinks.forEach(card => {
+            card.addEventListener('click', function(e) {
+                const page = this.dataset.page;
+                if (page) {
+                    e.preventDefault();
+                    showPage(page);
+                }
+            });
+        });
+
+        backLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const page = this.dataset.page;
+                if (page) showPage(page);
+            });
+        });
+
+        // Ensure first EAC step is active
+        if (eacSteps.length > 0 && !document.querySelector('#eac-steps .step-page.active')) {
+            eacSteps[0].classList.add('active');
+        }
+
+        // Show home by default
+        showPage('home');
+    </script>
+</body>
+</html>
